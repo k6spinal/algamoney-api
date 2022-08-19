@@ -34,6 +34,8 @@ public class CategoriaService {
 	public Categoria update(Long id, CategoriaDTO objDto) {
 		Categoria obj = findById(id);
 		obj.setDescricao(objDto.getDescricao());
+		obj.setId_categoriadespesa(objDto.getId());
+		obj.setDataCadastro(objDto.getDatacadastro());
 		return categoriaRepository.save(obj);
 	}
 
