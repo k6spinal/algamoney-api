@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,12 +57,20 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+//	@PutMapping (value = "/{id}")
+//	public ResponseEntity<CategoriaDTO> update(@PathVariable Long id, @RequestBody CategoriaDTO objDto) {
+//		Categoria newObj = categoriaService.update(id, objDto);
+//		return ResponseEntity.ok().body(new CategoriaDTO(newObj));
+//	}
+	
 	@PutMapping (value = "/{id}")
-	public ResponseEntity<CategoriaDTO> update(@PathVariable Long id, @RequestBody CategoriaDTO objDto) {
-		Categoria newObj = categoriaService.update(id, objDto);
-		return ResponseEntity.ok().body(new CategoriaDTO(newObj));
+	public ResponseEntity<Categoria> update(@PathVariable Long id, @RequestBody CategoriaDTO objDto) {
+		Categoria categoriaSalva = categoriaService.findById(id);
+		BeanUtils.copyProperties(objDto, categoriaSalva, "id");
+		categoriaRepository.save(categoriaSalva);
+		return ResponseEntity.ok(categoriaSalva);
 	}
-
+	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		categoriaService.delete(id);
