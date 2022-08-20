@@ -57,19 +57,19 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-//	@PutMapping (value = "/{id}")
-//	public ResponseEntity<CategoriaDTO> update(@PathVariable Long id, @RequestBody CategoriaDTO objDto) {
-//		Categoria newObj = categoriaService.update(id, objDto);
-//		return ResponseEntity.ok().body(new CategoriaDTO(newObj));
-//	}
-	
 	@PutMapping (value = "/{id}")
-	public ResponseEntity<Categoria> update(@PathVariable Long id, @RequestBody CategoriaDTO objDto) {
-		Categoria categoriaSalva = categoriaService.findById(id);
-		BeanUtils.copyProperties(objDto, categoriaSalva, "id");
-		categoriaRepository.save(categoriaSalva);
-		return ResponseEntity.ok(categoriaSalva);
+	public ResponseEntity<CategoriaDTO> update(@PathVariable Long id, @RequestBody CategoriaDTO objDto) {
+		Categoria newObj = categoriaService.update(id, objDto);
+		return ResponseEntity.ok().body(new CategoriaDTO(newObj));
 	}
+	
+//	@PutMapping (value = "/{id}")
+//	public ResponseEntity<Categoria> update(@PathVariable Long id, @RequestBody CategoriaDTO objDto) {
+//		Categoria categoriaSalva = categoriaService.findById(id);
+//		BeanUtils.copyProperties(objDto, categoriaSalva, "id");
+//		categoriaRepository.save(categoriaSalva);
+//		return ResponseEntity.ok(categoriaSalva);
+//	}
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
