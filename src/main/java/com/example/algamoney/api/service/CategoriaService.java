@@ -31,21 +31,21 @@ public class CategoriaService {
 		return categoriaRepository.save(obj);
 	}
 
-//	public Categoria update(Long id, CategoriaDTO objDto) {
-//		Categoria obj = findById(id);
-//		obj.setDescricao(objDto.getDescricao());
-//		obj.setId_categoriadespesa(objDto.getId());
-//		obj.setDataCadastro(objDto.getDatacadastro());
-//		return categoriaRepository.save(obj);
-//	}
-
-	public Categoria update(Long id, Categoria obj) {
-		Categoria categoriaSalvar = findById(id);
-		obj.setDescricao(categoriaSalvar.getDescricao());
-		obj.setId_categoriadespesa(categoriaSalvar.getId_categoriadespesa());
-		obj.setDataCadastro(categoriaSalvar.getDataCadastro());
+	public Categoria update(Long id, CategoriaDTO objDto) {
+		Categoria obj = findById(id);
+		obj.setDescricao(objDto.getDescricao());
+		obj.setId_categoriadespesa(objDto.getId());
+		obj.setDataCadastro(objDto.getDatacadastro());
 		return categoriaRepository.save(obj);
-	}	
+	}
+
+//	public Categoria update(Long id, Categoria obj) {
+//		Categoria categoriaSalvar = findById(id);
+//		obj.setDescricao(categoriaSalvar.getDescricao());
+//		obj.setId_categoriadespesa(categoriaSalvar.getId_categoriadespesa());
+//		obj.setDataCadastro(categoriaSalvar.getDataCadastro());
+//		return categoriaRepository.save(obj);
+//	}	
 	
 	public void delete(Long id) {
 		findById(id);
