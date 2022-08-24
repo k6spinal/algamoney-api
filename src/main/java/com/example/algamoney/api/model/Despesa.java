@@ -1,35 +1,36 @@
 package com.example.algamoney.api.model;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "categoria")
-public class Categoria {
+@Table (name = "despesa")
+public class Despesa {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private long id_categoriadespesa;
+	private long id_despesa;
 		
 	private Date datacadastro;
 	
 	private String descricao;
-
-	@OneToMany (mappedBy = "categoria")
-	private List<Despesa> despesa;
-		
+	
+	@ManyToOne
+	@JoinColumn(name = "categoria_id")
+	private Categoria categoria;
+	
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(id_categoriadespesa);
+		return Objects.hash(id_despesa);
 	}
 
 	@Override
@@ -40,25 +41,25 @@ public class Categoria {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
-		return id_categoriadespesa == other.id_categoriadespesa;
+		Despesa other = (Despesa) obj;
+		return id_despesa == other.id_despesa;
 	}
 
 	
-	public long getId_categoriadespesa() {
-		return id_categoriadespesa;
+	public long getId_despesa() {
+		return id_despesa;
 	}
 
-	public void setId_categoriadespesa(long id_categoriadespesa) {
-		this.id_categoriadespesa = id_categoriadespesa;
+	public void setId_despesa(long id_despesa) {
+		this.id_despesa = id_despesa;
 	}
 
-	public Date getDataCadastro() {
+	public Date getDatacadastro() {
 		return datacadastro;
 	}
 
-	public void setDataCadastro(Date dataCadastro) {
-		this.datacadastro = dataCadastro;
+	public void setDatacadastro(Date datacadastro) {
+		this.datacadastro = datacadastro;
 	}
 
 	public String getDescricao() {
@@ -69,14 +70,13 @@ public class Categoria {
 		this.descricao = descricao;
 	}
 
-	public List<Despesa> getDespesa() {
-		return despesa;
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
-	public void setDespesa(List<Despesa> despesa) {
-		this.despesa = despesa;
-	}
-	
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}	
 	
 	
 }
