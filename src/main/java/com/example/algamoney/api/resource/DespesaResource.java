@@ -40,7 +40,7 @@ public class DespesaResource {
 	@PostMapping
 	public ResponseEntity<Despesa> create(@RequestBody Despesa obj) {
 		obj = despesaService.create(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getCategoria().getId_categoriadespesa()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId_despesa()).toUri();
 		return ResponseEntity.created(uri).build();
 	}	
 	
