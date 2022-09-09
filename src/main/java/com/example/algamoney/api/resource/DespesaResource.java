@@ -4,11 +4,13 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,13 +37,13 @@ public class DespesaResource {
 	@Autowired
 	CategoriaService categoriaService;
 	
-//	@PutMapping (value = "/{id}")
-//	public ResponseEntity<Despesa> update(@PathVariable Long id, @RequestBody CategoriaDTO objDto) {
-//		Categoria categoriaSalva = categoriaService.findById(id);
-//		BeanUtils.copyProperties(objDto, categoriaSalva, "id");
-//		categoriaRepository.save(categoriaSalva);
-//		return ResponseEntity.ok(categuoriaSalva);
-//	}	
+	@PutMapping (value = "/{id}")
+	public ResponseEntity<Despesa> update(@PathVariable Long id, @RequestBody DespesaDTO objDto) {
+		Despesa despesaSalva = despesaService.findById(id);
+		BeanUtils.copyProperties(objDto, despesaSalva, "id");
+		despesaRepository.save(despesaSalva);
+		return ResponseEntity.ok(despesaSalva);
+	}	
 	
 //	@PostMapping
 //	public ResponseEntity<Despesa> create(@RequestBody Despesa obj, Long id_categoria) {

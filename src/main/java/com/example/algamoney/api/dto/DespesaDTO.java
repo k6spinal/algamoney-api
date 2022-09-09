@@ -23,24 +23,10 @@ public class DespesaDTO implements Serializable {
 
 	public DespesaDTO(Despesa obj, Long id) {
 		super();
-		
-		System.out.println("*** ID: "+obj.getId_despesa());
 		this.id = obj.getId_despesa();
-		
-		System.out.println("*** Descrição: "+obj.getDescricao());
 		this.descricao = obj.getDescricao();
-		
-		System.out.println("*** DataCadastro: "+obj.getDatacadastro());
 		this.datacadastro = obj.getDatacadastro();
-		
-		System.out.println("*** id_categoria: "+obj.getCategoria().getId_categoriadespesa());
-		
-		System.out.println("*** Categoria ID: "+obj.getCategoria().getId_categoriadespesa());
 		this.id_categoria = obj.getCategoria().getId_categoriadespesa();
-//		this.setCategoria_id(obj.getCategoria().getId_categoriadespesa());
-		
-		System.out.println("*** ID: "+id);
-		
 	}	
 	
 	public Long getId() {
